@@ -1,6 +1,7 @@
 const States = {
   Init: 'Init',
-  Gameloop: 'Gameloop'
+  Gameloop: 'Gameloop',
+  GameOver: 'GameOver'
 };
 
 export default States;

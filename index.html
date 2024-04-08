@@ -6,11 +6,16 @@
     <style>
       body {
         margin: 0;
-        background-color: darkgrey;
+        background-color: rgb(169, 169, 169);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
       }
       canvas {
-        width: 800px;
-        height: 600px;
+        width: 1600px;
+        height: 1200px;
 
         image-rendering: crisp-edges;
         image-rendering: pixelated;
@@ -18,12 +23,18 @@
         /* Fix Chrome bug https://stackoverflow.com/questions/69867152/how-to-disable-filtering-on-canvas-with-webgpu-context */
         animation: fix-image-rendering-bug .0001s; 
       }
+      div {
+        text-align: center;
+        margin: 10px 0;
+      }
 
-      @keyframes fix-image-rendering-bug {   from { opacity: 0.9999; }   to { opacity: 1; } 
+      @keyframes fix-image-rendering-bug {   from { opacity: 0.9999; }   to { opacity: 1; } }
     </style>
     <script type="module" src="src/index.ts"></script>
   </head>
   <body>
+    <div>PONG</div>
     <div id="game"></div>
+    <div>Made with 2B2D</div>
   </body>
 </html>

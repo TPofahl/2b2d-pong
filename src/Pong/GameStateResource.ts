@@ -6,5 +6,4 @@ export default class GameStateResouce implements Resource {
   readonly name = GameStateResouce.NAME;
 
   public level: number = Config.StartLevelId;
-  public health: number = Config.MaxHealth;
 }

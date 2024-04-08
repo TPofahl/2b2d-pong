@@ -29,8 +29,8 @@ export default class RenderingSystem {
   frameUniformBuffer!: GPUBuffer;
   sampler!: GPUSampler;
 
-  width = 800;
-  height = 600;
+  width = 2050;
+  height = 1155;
   zoom = 8;
 
 

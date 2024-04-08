@@ -1,6 +1,4 @@
 import LdtkData from "../../../2B2D/Assets/LdtkData";
-import AnimatedTilemap from "../../../2B2D/Components/AnimatedTilemap";
-import CollisionTarget from "../../../2B2D/Components/CollisionTarget";
 import Position from "../../../2B2D/Components/Position";
 import StaticBody from "../../../2B2D/Components/StaticBody";
 import Tilemap from "../../../2B2D/Components/Tilemap";
@@ -10,11 +8,11 @@ import GameAssets from "../../GameAssets";
 import { GameloopCleanupTag } from "../../GamePlugin";
 import GameStateResouce from "../../GameStateResource";
 import Layers from "../../Layers";
-import { DeathTileTarget, FlagTileTarget } from "../LevelPlugin";
 
 export default function SpawnLevel(update: Update) {
+  console.log("spawning level");
   const gameState = update.resource<GameStateResouce>(GameStateResouce.NAME);
-
+  console.log(gameState);
   // Spawn background tilemap
   update.spawn([
     new Tilemap(
@@ -26,28 +24,12 @@ export default function SpawnLevel(update: Update) {
     GameloopCleanupTag
   ]);
 
-  // The "middle" tiles
-  update.spawn([
-    new Tilemap(
-      Layers.BG,
-      GameAssets.LevelData.Tiles.Texture.Handle,
-      GameAssets.LevelData.Tiles.Tilemap.Handle(gameState.level, 0)
-    ),
-    Position.fromXY(0, 0),
-    new AnimatedTilemap(
-      [GameAssets.LevelData.Tiles.Tilemap.Handle(gameState.level, 0),
-      GameAssets.LevelData.Tiles.Tilemap.Handle(gameState.level, 1)],
-      300
-    ),
-    GameloopCleanupTag
-  ]);
-
-  // Foreground tiles
+  // The foreground tiles
   update.spawn([
     new Tilemap(
       Layers.FG,
-      GameAssets.LevelData.Tiles.Texture.Handle,
-      GameAssets.LevelData.Foreground.Tilemap.Handle(gameState.level)
+      GameAssets.LevelData.Foreground.Texture.Handle,
+      GameAssets.LevelData.Foreground.Tilemap.Handle(gameState.level, 0)
     ),
     Position.fromXY(0, 0),
     GameloopCleanupTag
@@ -63,24 +45,6 @@ export default function SpawnLevel(update: Update) {
       new Position(pos),
       new StaticBody(size),
       GameloopCleanupTag
-    ]);
-  });
-
-  // Flag Tiles
-  processLdtkIntGrid(ldtk, levelName, 'Collisions', 2, (pos, size) => {
-    update.spawn([
-      new Position(pos),
-      new CollisionTarget(FlagTileTarget, size),
-      GameloopCleanupTag,
-    ]);
-  });
-
-  // Death Tiles
-  processLdtkIntGrid(ldtk, levelName, 'Collisions', 3, (pos, size) => {
-    update.spawn([
-      new Position(pos),
-      new CollisionTarget(DeathTileTarget, size),
-      GameloopCleanupTag,
     ]);
   });
 }

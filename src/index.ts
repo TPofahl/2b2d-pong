@@ -1,6 +1,6 @@
 import Builder from "./2B2D/Builder";
-import GamePlugin from "./Example/GamePlugin";
-import States from "./Example/States";
+import GamePlugin from "./Pong/GamePlugin";
+import States from "./Pong/States";
 
 async function main() {
   const builder = new Builder();
