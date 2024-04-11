@@ -7,6 +7,7 @@ import GameStateResouce from "./GameStateResource";
 import InitPlugin, { InitializationComplete } from "./Init/InitPlugin";
 import Layers from "./Layers";
 import LevelPlugin from "./Level/LevelPlugin";
+import PlayerPaddlePlugin from "./PlayerPaddle/PlayerPaddlePlugin";
 import States from "./States";
 
 export const GameloopCleanupTag = 'GameloopCleanupTag';
@@ -22,6 +23,9 @@ export default function GamePlugin(builder: Builder) {
 
   // Spawns/despawns the level, runs level collisions
   builder.plugin(LevelPlugin);
+
+  // Spawns the player paddle
+  builder.plugin(PlayerPaddlePlugin)
   
   // Global systems and events
   builder.update(States.Gameloop, ApplyAabbPhysics);

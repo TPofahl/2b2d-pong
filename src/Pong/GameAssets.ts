@@ -3,6 +3,7 @@ import LdtkData from "../2B2D/Assets/LdtkData";
 import { generateSingleSpriteAtlas } from "../2B2D/Assets/SpriteAtlasAsset";
 import loadTextureAsset from "../2B2D/Assets/TextureAsset";
 import createTilemapFromLdtkJson from "../2B2D/Assets/TilemapData";
+import Vec2 from "../2B2D/Math/Vec2";
 import AssetsResource from "../2B2D/Resources/AssetsResource";
 import AudioResource from "../2B2D/Resources/AudioResource";
 
@@ -34,8 +35,12 @@ const GameAssets = {
     },
     Paddles: {
       Texture: {
-        Handle: '',
+        Handle: 'paddles-texture',
         Load: () => loadTextureAsset(GameAssets.LevelData.Paddles.Texture.Handle, 'assets/pong-paddles.png')
+      },
+      Atlas: {
+        Handle: 'paddles-atlas',
+        Load: () => generateSingleSpriteAtlas(GameAssets.LevelData.Paddles.Atlas.Handle, new Vec2(32, 48))
       }
     }
   },
@@ -44,14 +49,15 @@ const GameAssets = {
     assets.add(GameAssets.LevelData.Background.Texture.Load());
     assets.add(GameAssets.LevelData.Foreground.Texture.Load());
     assets.add(GameAssets.LevelData.Paddles.Texture.Load());
-    // assets.add(generateSingleSpriteAtlas("Player Paddle", )) TODO
+    assets.add(GameAssets.LevelData.Paddles.Atlas.Load())
   },
   IsLoaded: (assets: AssetsResource) => {
     return assets.loaded([
       GameAssets.LevelData.LdtkData.Handle,
       GameAssets.LevelData.Background.Texture.Handle,
       GameAssets.LevelData.Foreground.Texture.Handle,
-      GameAssets.LevelData.Paddles.Texture.Handle
+      GameAssets.LevelData.Paddles.Texture.Handle,
+      GameAssets.LevelData.Paddles.Atlas.Handle
     ]);
   },
   GenerateTilemaps: (assets: AssetsResource) => {

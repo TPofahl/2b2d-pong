@@ -46,6 +46,7 @@ export default function SpawnPlayerPaddle(update: Update) {
         new Position(position),
         new Sprite(
           GameAssets.LevelData.Paddles.Texture.Handle,
+          GameAssets.LevelData.Paddles.Atlas.Handle,
           Layers.Entities,
         ),
         UseSpriteRenderer,
