@@ -3,6 +3,7 @@ import KineticBody from "../../../2B2D/Components/KineticBody";
 import MappedInput from "../../../2B2D/Components/MappedInput";
 import Position from "../../../2B2D/Components/Position";
 import Sprite from "../../../2B2D/Components/Sprite";
+import StateMachine from "../../../2B2D/Components/StateMachine";
 import UseSpriteRenderer from "../../../2B2D/Components/UseSpriteRenderer";
 import Velocity from "../../../2B2D/Components/Velocity";
 import Weight from "../../../2B2D/Components/Weight";
@@ -14,6 +15,8 @@ import { GameloopCleanupTag } from "../../GamePlugin";
 import GameStateResouce from "../../GameStateResource";
 import Layers from "../../Layers";
 import PlayerPaddle from "../Components/PlayerPaddle";
+import IdleState from "../Machines/IdleState";
+import MovingState from "../Machines/MovingState";
 import PlayerPaddleActions from "../PlayerPaddleActions";
 
 export default function SpawnPlayerPaddle(update: Update) {
@@ -33,12 +36,10 @@ export default function SpawnPlayerPaddle(update: Update) {
         b.for(PlayerPaddleActions.Up, a => {
           a.keyboard('a');
           a.keyboard('A'); // Whoops! Capslock is on.
-          a.keyboard('37'); // left arrowkey
         });
         b.for(PlayerPaddleActions.Down, a => {
           a.keyboard('d');
           a.keyboard('D');
-          a.keyboard('39'); // right arrowkey
         });
     });
 
@@ -55,7 +56,7 @@ export default function SpawnPlayerPaddle(update: Update) {
         new Weight(-0.05),
         new PlayerPaddle(),
         GameloopCleanupTag,
-        // new StateMachine(IdleState.Instance), TODO add state for paddle
+        new StateMachine(IdleState.Instance),
         inputMap,
       ]);
 }

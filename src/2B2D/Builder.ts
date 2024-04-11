@@ -118,6 +118,14 @@ export default class Builder {
     return this;
   }
 
+
+  /** Set a state to be active (entered) when the engine first boots up. Can
+   * be called multiple times for multiple states
+   */
+  startState(state:State) {
+    this.command({ type: 'enter-state', state });
+  }
+
   /**
    * Builds an engine, ready to run.
    * @param skipDefaults If true, no default systems or resources will be added to the engine instance.
@@ -139,9 +147,14 @@ export default class Builder {
         resource: new AssetsResource()
       });
 
+      const audioResource = new AudioResource();
       this.commands.push({
         type: 'add-resource',
-        resource: new AudioResource()
+        resource: audioResource
+      });
+      this.commands.push({
+        type: 'add-ticker',
+        ticker: audioResource
       });
 
       const keysResource = new KeysResource();
@@ -153,10 +166,6 @@ export default class Builder {
         type: 'add-ticker',
         ticker: keysResource
       });
-      this.commands.push({
-        type: "add-resource",
-        resource: new AudioResource()
-      })
     }
 
     this.engine.processCommands(this.commands);

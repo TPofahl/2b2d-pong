@@ -4,6 +4,7 @@
     <head>
       <title>Pong - 2B2D</title>
       <meta charset="utf-8" />
+      <link rel="icon" href="/public/assets/site/pong-favicon.ico" type="image/x-icon">
       <style>
         body {
           margin: 0;
@@ -34,14 +35,20 @@
               transform: translate3d(0,0,0);
           }
           #game {
-            position: relative; /* Ensure z-index works */
-            z-index: 2; /* Set a higher z-index */
+            position: relative;
+            z-index: 2;
+            max-width: 65%;
+            max-height: 65%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
           }
         canvas {
-          width: 1600px;
-          height: 1200px;
-          image-rendering: crisp-edges;
-          image-rendering: pixelated;
+          max-width: 100%;
+          max-height: 100%;
+          width: auto;
+          height: auto;
           /* Fix Chrome bug https://stackoverflow.com/questions/69867152/how-to-disable-filtering-on-canvas-with-webgpu-context */
           animation: fix-image-rendering-bug .0001s; 
         }
@@ -68,9 +75,7 @@
       <script type="module" src="src/index.ts"></script>
     </head>
     <body>
-      <div>PONG</div>
       <div id="game"></div>
-      <div>Made with 2B2D</div>
       <div id="background2b2d"></div>
     </body>
   </html>

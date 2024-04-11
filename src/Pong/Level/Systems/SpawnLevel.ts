@@ -12,7 +12,6 @@ import Layers from "../../Layers";
 export default function SpawnLevel(update: Update) {
   console.log("spawning level");
   const gameState = update.resource<GameStateResouce>(GameStateResouce.NAME);
-  console.log(gameState);
   // Spawn background tilemap
   update.spawn([
     new Tilemap(

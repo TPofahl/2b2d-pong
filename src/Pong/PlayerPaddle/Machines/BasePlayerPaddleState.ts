@@ -13,24 +13,23 @@ import PlayerPaddleActions from "../PlayerPaddleActions";
 export default abstract class BasePlayerPaddleState implements MachineState {
     readonly abstract updateImmediately: boolean;
     name: string = "BasePlayerPaddleState";
-    readonly speed: number = 0.03;
-    readonly drag: number = 0.8;
+    readonly speed: number = 0.0003;
+    readonly drag: number = 0.08;
 
     // Keep re-using this query to get better query caching
     getPlayerPaddle(update: Update) {
-        const query = update.single([PlayerPaddle.NAME, MappedInput.NAME, Velocity.NAME, Animated.NAME, Sprite.NAME, KineticBody.NAME]);
+        const query = update.single([PlayerPaddle.NAME, MappedInput.NAME, Velocity.NAME, Sprite.NAME, KineticBody.NAME]);
         if (!query)
           return;
     
-        var [player, input, velocity, animation, sprite, body] = query.components as [PlayerPaddle, MappedInput, Velocity, Animated, Sprite, KineticBody];
-        return { entity: query.entity, player, input, velocity, animation, sprite, body };
+        var [player, input, velocity, sprite, body] = query.components as [PlayerPaddle, MappedInput, Velocity, Sprite, KineticBody];
+        return { entity: query.entity, player, input, velocity, sprite, body };
     }
 
-    protected abstract onEnter(update: Update, components: { entity: Entity, player: PlayerPaddle, input: MappedInput, velocity: Velocity, animation: Animated, sprite: Sprite, body: KineticBody }): void;
-    protected abstract onUpdate(update: Update, components: { entity: Entity, player: PlayerPaddle, input: MappedInput, velocity: Velocity, animation: Animated, sprite: Sprite, body: KineticBody }): MachineState | undefined;
+    protected abstract onEnter(update: Update, components: { entity: Entity, player: PlayerPaddle, input: MappedInput, velocity: Velocity, sprite: Sprite, body: KineticBody }): void;
+    protected abstract onUpdate(update: Update, components: { entity: Entity, player: PlayerPaddle, input: MappedInput, velocity: Velocity, sprite: Sprite, body: KineticBody }): MachineState | undefined;
 
     getKeys(update: Update, components: { input: MappedInput }) {
-        console.log("test");
         const up = components.input.isPressed(update, PlayerPaddleActions.Up);
         const down = components.input.isPressed(update, PlayerPaddleActions.Down);
         return { up, down };
@@ -46,7 +45,7 @@ export default abstract class BasePlayerPaddleState implements MachineState {
 
     update(update: Update): MachineState | undefined {
         var player = this.getPlayerPaddle(update);
-        console.log('I am doing something');
+        console.log("player: " + player);
         if (!player) {
             return;
         }
