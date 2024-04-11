@@ -1,4 +1,3 @@
-import Animated from "../../../2B2D/Components/Animated";
 import KineticBody from "../../../2B2D/Components/KineticBody";
 import MappedInput from "../../../2B2D/Components/MappedInput";
 import Sprite from "../../../2B2D/Components/Sprite";

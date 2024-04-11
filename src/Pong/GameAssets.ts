@@ -42,6 +42,16 @@ const GameAssets = {
         Handle: 'paddles-atlas',
         Load: () => generateSingleSpriteAtlas(GameAssets.LevelData.Paddles.Atlas.Handle, new Vec2(32, 48))
       }
+    },
+    Ball: {
+      Texture: {
+        Handle: 'ball-texture',
+        Load: () => loadTextureAsset(GameAssets.LevelData.Ball.Texture.Handle, 'assets/pong-ball.png')
+      },
+      Atlas: {
+        Handle: 'ball-atlas',
+        Load: () => generateSingleSpriteAtlas(GameAssets.LevelData.Ball.Atlas.Handle, new Vec2(16,16))
+      }
     }
   },
   Init: (assets: AssetsResource, audio: AudioResource) => {
@@ -50,6 +60,8 @@ const GameAssets = {
     assets.add(GameAssets.LevelData.Foreground.Texture.Load());
     assets.add(GameAssets.LevelData.Paddles.Texture.Load());
     assets.add(GameAssets.LevelData.Paddles.Atlas.Load())
+    assets.add(GameAssets.LevelData.Ball.Texture.Load());
+    assets.add(GameAssets.LevelData.Ball.Atlas.Load());
   },
   IsLoaded: (assets: AssetsResource) => {
     return assets.loaded([
@@ -57,7 +69,9 @@ const GameAssets = {
       GameAssets.LevelData.Background.Texture.Handle,
       GameAssets.LevelData.Foreground.Texture.Handle,
       GameAssets.LevelData.Paddles.Texture.Handle,
-      GameAssets.LevelData.Paddles.Atlas.Handle
+      GameAssets.LevelData.Paddles.Atlas.Handle,
+      GameAssets.LevelData.Ball.Texture.Handle,
+      GameAssets.LevelData.Ball.Atlas.Handle
     ]);
   },
   GenerateTilemaps: (assets: AssetsResource) => {

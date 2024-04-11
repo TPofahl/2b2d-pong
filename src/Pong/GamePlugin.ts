@@ -2,6 +2,7 @@ import Builder from "../2B2D/Builder";
 import ApplyAabbPhysics from "../2B2D/Systems/ApplyAabbPhysics";
 import DetectCollisionTargetHits from "../2B2D/Systems/DetectCollisionTargetHits";
 import Update from "../2B2D/Update";
+import BallPlugin from "./Ball/BallPlugin";
 import ComputerPaddlePlugin from "./ComputerPaddle/ComputerPaddlePlugin";
 import Config from "./Config";
 import GameStateResouce from "./GameStateResource";
@@ -30,6 +31,9 @@ export default function GamePlugin(builder: Builder) {
 
   // Spawns the computer paddle
   builder.plugin(ComputerPaddlePlugin);
+
+  // Spawns the ball
+  builder.plugin(BallPlugin);
   
   // Global systems and events
   builder.update(States.Gameloop, ApplyAabbPhysics);
