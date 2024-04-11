@@ -1,40 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Pong - 2B2D</title>
-    <meta charset="utf-8" />
-    <style>
-      body {
-        margin: 0;
-        background-color: rgb(169, 169, 169);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-      }
-      canvas {
-        width: 1600px;
-        height: 1200px;
 
-        image-rendering: crisp-edges;
-        image-rendering: pixelated;
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <title>Pong - 2B2D</title>
+      <meta charset="utf-8" />
+      <style>
+        body {
+          margin: 0;
+          background-color: rgb(11, 11, 11);
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+        }
+        #background2b2d{
+              background: none;
+              background-image: url('/public/assets/site/2b2d-tile-1.png'), url('/public/assets/site/2b2d-tile.png'), url('/public/assets/site/2b2d-tile-2.png');
+              height: 100%;
+              left: 0;
+              position: absolute;
+              top: 0;
+              width: 100%;
+              z-index:0;
+              -webkit-animation: background2b2d 3000s linear infinite;
+              -moz-animation: background2b2d 3000s linear infinite;
+              -ms-animation: background2b2d 3000s linear infinite;
+              animation: background2b2d 3000s linear infinite;
+              -webkit-transform: translate3d(0,0,0);
+              -moz-transform: translate3d(0,0,0);
+              -ms-transform: translate3d(0,0,0);
+              -o-transform: translate3d(0,0,0);
+              transform: translate3d(0,0,0);
+          }
+          #game {
+            position: relative; /* Ensure z-index works */
+            z-index: 2; /* Set a higher z-index */
+          }
+        canvas {
+          width: 1600px;
+          height: 1200px;
+          image-rendering: crisp-edges;
+          image-rendering: pixelated;
+          /* Fix Chrome bug https://stackoverflow.com/questions/69867152/how-to-disable-filtering-on-canvas-with-webgpu-context */
+          animation: fix-image-rendering-bug .0001s; 
+        }
 
-        /* Fix Chrome bug https://stackoverflow.com/questions/69867152/how-to-disable-filtering-on-canvas-with-webgpu-context */
-        animation: fix-image-rendering-bug .0001s; 
-      }
-      div {
-        text-align: center;
-        margin: 10px 0;
-      }
+          @keyframes background2b2d {
+            0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+            100% {background-position: 50000px 50000px, 10000px 20000px, -10000px 15000px;}          
+          }
+          @-moz-keyframes background2b2d {
+            0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+            100% {background-position: 50000px 50000px, 10000px 20000px, -10000px 15000px;}          
+          }
+          @-webkit-keyframes background2b2d {
+            0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+            100% {background-position: 50000px 50000px, 10000px 20000px, -10000px 15000px;}          
+          }
+          @-ms-keyframes background2b2d {
+            0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+            100% {background-position: 50000px 50000px, 10000px 20000px, -10000px 15000px;} 
+          }
+        @keyframes fix-image-rendering-bug {   from { opacity: 0.9999; }   to { opacity: 1; } }
+      </style>
 
-      @keyframes fix-image-rendering-bug {   from { opacity: 0.9999; }   to { opacity: 1; } }
-    </style>
-    <script type="module" src="src/index.ts"></script>
-  </head>
-  <body>
-    <div>PONG</div>
-    <div id="game"></div>
-    <div>Made with 2B2D</div>
-  </body>
-</html>
+      <script type="module" src="src/index.ts"></script>
+    </head>
+    <body>
+      <div>PONG</div>
+      <div id="game"></div>
+      <div>Made with 2B2D</div>
+      <div id="background2b2d"></div>
+    </body>
+  </html>

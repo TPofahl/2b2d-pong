@@ -6,9 +6,9 @@ const Layers = {
   FG: 'FG',
 
   add: function (builder: Builder) {
-    // builder.layer(Layers.Entities);
     builder.layer(Layers.BG);
     builder.layer(Layers.FG);
+    builder.layer(Layers.Entities);
   }
 };
 
