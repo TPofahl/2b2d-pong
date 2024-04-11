@@ -15,21 +15,18 @@ export default class MovingState extends BasePlayerPaddleState {
     private constructor() { super(); }
     public static readonly Instance = new MovingState();
 
-    readonly moveSpeed = 0.02;
+    readonly moveSpeed = 2.2;
 
     protected onEnter(update: Update, components: { entity: number; player: PlayerPaddle; input: MappedInput; velocity: Velocity; sprite: Sprite; body: KineticBody; }): void {
     }
     protected onUpdate(update: Update, components: { entity: number; player: PlayerPaddle; input: MappedInput; velocity: Velocity; sprite: Sprite; body: KineticBody; }): MachineState | undefined {
         const { velocity } = components;
         var { up, down } = this.getKeys(update, components);
-        if (up || down) {
-            return MovingState.Instance;
-        }
-        if (!up && !down) {
-            return IdleState.Instance;
-        }
 
-        velocity.velocity = velocity.velocity.add(new Vec2(0, this.moveSpeed));
+        if (!up && !down) return IdleState.Instance;
+        if (up) velocity.velocity = velocity.velocity.add(new Vec2(0, this.moveSpeed));
+        if (down) velocity.velocity = velocity.velocity.add(new Vec2(0, -this.moveSpeed));
+
         this.applyUpAndDownVelocity(update, components);
     }
 }

@@ -53,7 +53,7 @@ export default function SpawnPlayerPaddle(update: Update) {
         UseSpriteRenderer,
         new Velocity(Vec2.ZERO),
         new KineticBody(new Vec2(8, 12)),
-        new Weight(-0.05),
+        new Weight(0), // Turn off gravity.
         new PlayerPaddle(),
         GameloopCleanupTag,
         new StateMachine(IdleState.Instance),

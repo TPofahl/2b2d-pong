@@ -12,7 +12,6 @@ import PlayerPaddleActions from "../PlayerPaddleActions";
 
 export default abstract class BasePlayerPaddleState implements MachineState {
     readonly abstract updateImmediately: boolean;
-    name: string = "BasePlayerPaddleState";
     readonly speed: number = 0.0003;
     readonly drag: number = 0.08;
 
@@ -45,7 +44,6 @@ export default abstract class BasePlayerPaddleState implements MachineState {
 
     update(update: Update): MachineState | undefined {
         var player = this.getPlayerPaddle(update);
-        console.log("player: " + player);
         if (!player) {
             return;
         }
