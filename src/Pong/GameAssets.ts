@@ -52,6 +52,16 @@ const GameAssets = {
         Handle: 'ball-atlas',
         Load: () => generateSingleSpriteAtlas(GameAssets.LevelData.Ball.Atlas.Handle, new Vec2(16,16))
       }
+    },
+    Digit: {
+      Texture: {
+        Handle: 'digit-texture',
+        Load: () => loadTextureAsset(GameAssets.LevelData.Digit.Texture.Handle, 'assets/pong-numbers.png')
+      },
+      Atlas: {
+        Handle: 'digit-atlas',
+        Load: () => generateSingleSpriteAtlas(GameAssets.LevelData.Digit.Atlas.Handle, new Vec2(16,32))
+      }
     }
   },
   Init: (assets: AssetsResource, audio: AudioResource) => {
@@ -62,6 +72,8 @@ const GameAssets = {
     assets.add(GameAssets.LevelData.Paddles.Atlas.Load())
     assets.add(GameAssets.LevelData.Ball.Texture.Load());
     assets.add(GameAssets.LevelData.Ball.Atlas.Load());
+    assets.add(GameAssets.LevelData.Digit.Texture.Load());
+    assets.add(GameAssets.LevelData.Digit.Atlas.Load());
   },
   IsLoaded: (assets: AssetsResource) => {
     return assets.loaded([
@@ -71,7 +83,9 @@ const GameAssets = {
       GameAssets.LevelData.Paddles.Texture.Handle,
       GameAssets.LevelData.Paddles.Atlas.Handle,
       GameAssets.LevelData.Ball.Texture.Handle,
-      GameAssets.LevelData.Ball.Atlas.Handle
+      GameAssets.LevelData.Ball.Atlas.Handle,
+      GameAssets.LevelData.Digit.Texture.Handle,
+      GameAssets.LevelData.Digit.Atlas.Handle
     ]);
   },
   GenerateTilemaps: (assets: AssetsResource) => {

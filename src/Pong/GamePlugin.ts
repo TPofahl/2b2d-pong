@@ -5,6 +5,7 @@ import Update from "../2B2D/Update";
 import BallPlugin from "./Ball/BallPlugin";
 import ComputerPaddlePlugin from "./ComputerPaddle/ComputerPaddlePlugin";
 import Config from "./Config";
+import LeftPlayerDigitPlugin from "./Digits/LeftPlayerDigit/LeftPlayerDigitPlugin";
 import GameStateResouce from "./GameStateResource";
 import InitPlugin, { InitializationComplete } from "./Init/InitPlugin";
 import Layers from "./Layers";
@@ -34,6 +35,9 @@ export default function GamePlugin(builder: Builder) {
 
   // Spawns the ball
   builder.plugin(BallPlugin);
+
+  // spawns the left player score digit
+  builder.plugin(LeftPlayerDigitPlugin);
   
   // Global systems and events
   builder.update(States.Gameloop, ApplyAabbPhysics);
