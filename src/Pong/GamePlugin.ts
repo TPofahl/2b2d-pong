@@ -5,7 +5,10 @@ import Update from "../2B2D/Update";
 import BallPlugin from "./Ball/BallPlugin";
 import ComputerPaddlePlugin from "./ComputerPaddle/ComputerPaddlePlugin";
 import Config from "./Config";
+import LeftComputerDigitPlugin from "./Digits/LeftComputerDigit/LeftComputerDigitPlugin";
 import LeftPlayerDigitPlugin from "./Digits/LeftPlayerDigit/LeftPlayerDigitPlugin";
+import RightComputerDigitPlugin from "./Digits/RightComputerDigit/RightComputerDigitPlugin";
+import RightPlayerDigitPlugin from "./Digits/RightPlayerDigit/RightPlayerDigitPlugin";
 import GameStateResouce from "./GameStateResource";
 import InitPlugin, { InitializationComplete } from "./Init/InitPlugin";
 import Layers from "./Layers";
@@ -38,6 +41,15 @@ export default function GamePlugin(builder: Builder) {
 
   // spawns the left player score digit
   builder.plugin(LeftPlayerDigitPlugin);
+
+  // spawns the right player score digit
+  builder.plugin(RightPlayerDigitPlugin);
+
+  // spawns the left computer score digit
+  builder.plugin(LeftComputerDigitPlugin);
+
+  // spawns the right computer score digit
+  builder.plugin(RightComputerDigitPlugin);
   
   // Global systems and events
   builder.update(States.Gameloop, ApplyAabbPhysics);
