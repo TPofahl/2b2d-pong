@@ -34,10 +34,12 @@ export default function SpawnPlayerPaddle(update: Update) {
         b.for(PlayerPaddleActions.Up, a => {
           a.keyboard('a');
           a.keyboard('A'); // Whoops! Capslock is on.
+          a.keyboard('ArrowLeft');
         });
         b.for(PlayerPaddleActions.Down, a => {
           a.keyboard('d');
           a.keyboard('D');
+          a.keyboard('ArrowRight');
         });
     });
 
