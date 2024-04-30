@@ -1,4 +1,5 @@
 import LdtkData from "../../../2B2D/Assets/LdtkData";
+import CollisionTarget from "../../../2B2D/Components/CollisionTarget";
 import Position from "../../../2B2D/Components/Position";
 import StaticBody from "../../../2B2D/Components/StaticBody";
 import Tilemap from "../../../2B2D/Components/Tilemap";
@@ -43,6 +44,14 @@ export default function SpawnLevel(update: Update) {
     update.spawn([
       new Position(pos),
       new StaticBody(size),
+      GameloopCleanupTag
+    ]);
+  });
+
+  processLdtkIntGrid(ldtk, levelName, 'Collisions', 2, (pos, size) => {
+    update.spawn([
+      new Position(pos),
+      new CollisionTarget("EndZone", size),
       GameloopCleanupTag
     ]);
   });
